@@ -1,7 +1,8 @@
+//using lifecycle hooks like OnInit
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 
-
+//using templateUrl and styleUrls properties of the component decorator
 @Component({
 selector: 'pm-products',
 templateUrl: './product-list.component.html',
@@ -67,6 +68,8 @@ export class ProductListComponent implements OnInit{
     this.listFilter = "cart";
   }
 
+
+
   performFilter(filterBy: string): IProduct[] {
       filterBy = filterBy.toLocaleLowerCase();
       return this.products.filter((product: IProduct) =>
@@ -77,6 +80,7 @@ export class ProductListComponent implements OnInit{
     this.showImage = !this.showImage;
   };
 
+  //for future use, defining OnInit hook interface
   ngOnInit(): void {
     console.log('In OnInit');
   }

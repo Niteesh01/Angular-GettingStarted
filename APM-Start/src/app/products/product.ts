@@ -1,3 +1,6 @@
+//using interface to specify custom type to take full advantage of typescript
+//to strongly type our custom objects
+
 export interface IProduct {
 
     productId: number;

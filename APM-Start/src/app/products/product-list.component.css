@@ -1,3 +1,5 @@
+//creating a component level stylesheet to encapsulate styles in the component itself
+
 thead {
     color: #337AB7
 }
