@@ -1,6 +1,7 @@
 //using lifecycle hooks like OnInit
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
+import { ProductService } from './product.service'
 
 //using templateUrl and styleUrls properties of the component decorator
 @Component({
@@ -30,42 +31,11 @@ export class ProductListComponent implements OnInit{
   }
 
 
-  products: IProduct[] = [
-    {
-      "productId": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2016",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-    },
-    {
-      "productId": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-0023",
-      "releaseDate": "March 18, 2016",
-      "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-    },
-    {
-      "productId": 8,
-      "productName": "Saw",
-      "productCode": "TBX-0022",
-      "releaseDate": "May 15, 2016",
-      "description": "15-inch steel blade hand saw",
-      "price": 11.55,
-      "starRating": 3.7,
-      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
-    }
-  ];
+  products: IProduct[] = [];
 
-  constructor() {
-    this.filterProducts = this.products;
-    this.listFilter = "cart";
+  constructor(private productService: ProductService) {
+
+   // this.listFilter = "cart";
   }
 
   onRatingClicked(message: number): void {
@@ -84,6 +54,7 @@ export class ProductListComponent implements OnInit{
 
   //for future use, defining OnInit hook interface
   ngOnInit(): void {
-    console.log('In OnInit');
+    this.products = this.productService.getProducts();
+    this.filterProducts = this.products;
   }
 }
