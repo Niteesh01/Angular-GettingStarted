@@ -14,7 +14,21 @@ export class ProductListComponent implements OnInit{
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  listFilter: string = 'cart';
+  //listFilter: string = 'cart';
+
+  _listFilter: string;
+  filterProducts: IProduct[];
+
+  get listFilter(): string {
+      return this._listFilter;
+  }
+
+  set listFilter(value: string){
+      this._listFilter = value;
+      this.filterProducts = this.listFilter ? this.performFilter(this.listFilter):this.products;
+  }
+
+
   products: IProduct[] = [
     {
       "productId": 1,
@@ -47,6 +61,17 @@ export class ProductListComponent implements OnInit{
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
     }
   ];
+
+  constructor() {
+    this.filterProducts = this.products;
+    this.listFilter = "cart";
+  }
+
+  performFilter(filterBy: string): IProduct[] {
+      filterBy = filterBy.toLocaleLowerCase();
+      return this.products.filter((product: IProduct) =>
+            product.productName.toLocaleLowerCase().indexOf(filterBy)!= -1);
+  }
 
   toggleImage(): void {
     this.showImage = !this.showImage;
