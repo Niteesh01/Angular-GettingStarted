@@ -1,23 +1,22 @@
-//using lifecycle hooks like OnInit
+// using lifecycle hooks like OnInit
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
-import { ProductService } from './product.service'
+import { ProductService } from './product.service';
 
-//using templateUrl and styleUrls properties of the component decorator
+// using templateUrl and styleUrls properties of the component decorator
 @Component({
-selector: 'pm-products',
 templateUrl: './product-list.component.html',
 styleUrls: ['./product-list.component.css']
 })
 
 export class ProductListComponent implements OnInit{
 
-  pageTitle: string = "Product List";
+  pageTitle: string= 'Product List';
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
   errorMessage: string;
-  //listFilter: string = 'cart';
+  // listFilter: string = 'cart';
 
   _listFilter: string;
   filterProducts: IProduct[];
@@ -40,7 +39,7 @@ export class ProductListComponent implements OnInit{
   }
 
   onRatingClicked(message: number): void {
-    this.pageTitle = ''+ message;
+    this.pageTitle = '' + message;
     }
 
   performFilter(filterBy: string): IProduct[] {
@@ -51,9 +50,9 @@ export class ProductListComponent implements OnInit{
 
   toggleImage(): void {
     this.showImage = !this.showImage;
-  };
+  }
 
-  //for future use, defining OnInit hook interface
+
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
       products => {this.products = products;
