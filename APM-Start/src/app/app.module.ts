@@ -12,6 +12,7 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { StarComponent } from './shared/star.component';
 import { ProductDetailComponent } from './products/product-detail.component';
 
+// for hash style url links , { useHash: true }
 
 @NgModule({
   declarations: [
@@ -28,11 +29,11 @@ import { ProductDetailComponent } from './products/product-detail.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'products', component: ProductListComponent},
-      {path: 'products/:id',component: ProductDetailComponent},
+      {path: 'products/:id', component: ProductDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-    ], { useHash: true })
+    ])
   ],
   bootstrap: [AppComponent]
 })
